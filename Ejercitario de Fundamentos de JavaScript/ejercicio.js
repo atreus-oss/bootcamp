@@ -36,7 +36,7 @@ function createMessageVariable() {
 
 // 6. Crea una variable llamada `resultado` y asígnale la suma de 2 y 3, luego imprime la variable en consola.
 function createSumVariable() {
-    let resultado = (1 + 2)
+    let resultado = (2 + 3)
     console.log(resultado)
 }
 
