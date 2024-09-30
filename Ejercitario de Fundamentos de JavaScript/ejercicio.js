@@ -69,8 +69,8 @@ function checkUserNameType() {
 // 11. Asegúrate de que `dogId` es una cadena de texto y luego imprime el tipo de dato en consola.
 function checkDogIdIsString() {
     let dogId = '123'
-    typeof dogId === String
-    console.log(typeof dogId)
+    console.log(typeof dogId === "string");
+    console.log(typeof dogId);
 }
 
 // console.log()
