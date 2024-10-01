@@ -116,21 +116,14 @@ function esVocal(letra) {
     letra = "a"
     switch (letra){
         case "a":
-            console.log("La letra ingesada es la vocal 'a'")
-            break
         case "e":
-            console.log("La letra ingresada es la vocal 'e'")
-            break
         case "i":
-            console.log("La letra ingresada es la vocal 'i'")
-            break
         case "o":
-            console.log("La letra ingresada es la vocal 'o'")
-            break
         case "u":
-            console.log("La letra indicada es la vocal 'u'")
+            console.log(`${letra} Es una vocal`)
             break;
         default:
+            console.log(`${letra} No es una vocal`)
             break
     }
 }
@@ -150,6 +143,7 @@ function evaluarNumeros(a, b, c) {
 }
 
 // Exportar todas las funciones
+/*
 export {
     verificarParidad,
     clasificarEdad,
@@ -161,4 +155,14 @@ export {
     obtenerDiaSemana,
     esVocal,
     evaluarNumeros,
-};
+};*/
+verificarParidad()
+clasificarEdad()
+cuentaRegresiva()
+repetirMensaje()
+imprimirPares()
+detenerEnSeis()
+saltarCinco()
+obtenerDiaSemana()
+esVocal()
+evaluarNumeros()
