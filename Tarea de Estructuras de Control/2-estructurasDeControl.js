@@ -143,7 +143,6 @@ function evaluarNumeros(a, b, c) {
 }
 
 // Exportar todas las funciones
-/*
 export {
     verificarParidad,
     clasificarEdad,
@@ -155,14 +154,4 @@ export {
     obtenerDiaSemana,
     esVocal,
     evaluarNumeros,
-};*/
-verificarParidad()
-clasificarEdad()
-cuentaRegresiva()
-repetirMensaje()
-imprimirPares()
-detenerEnSeis()
-saltarCinco()
-obtenerDiaSemana()
-esVocal()
-evaluarNumeros()
+};
