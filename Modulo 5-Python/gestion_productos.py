@@ -6,6 +6,16 @@ def añadir_producto():
     precio = input("Ingrese el precio del producto: ")
     cantidad = input("Ingrese la cantidad del producto: ")
 
+    if precio or cantidad:
+        try:
+            precio = float(precio)
+            cantidad = int(cantidad)
+        except ValueError:
+            print("Por favor, ingrese valores numéricos para el precio y la cantidad.")
+            return
+    else:
+        return
+
     producto = {
         'nombre': nombre,
         'precio': float(precio),
@@ -14,6 +24,7 @@ def añadir_producto():
 
     productos.append(producto)
     print(f"El producto '{nombre}' se añadió con éxito.")
+
 
 
 def ver_productos():
@@ -38,16 +49,25 @@ def actualizar_producto():
         precio = input("Ingrese el nuevo precio del producto: ")
         cantidad = input("Ingrese la nueva cantidad del producto: ")
 
+        try:
+            if precio or cantidad:
+                precio = float(precio)
+                cantidad = int(cantidad)
+        except ValueError:
+            print("Por favor, ingrese valores numéricos para el precio y la cantidad.")
+            return
+
         if nombre:
             productos[indice]['nombre'] = nombre
         if precio:
-            productos[indice]['precio'] = float(precio)
+            productos[indice]['precio'] = precio
         if cantidad:
-            productos[indice]['cantidad'] = int(cantidad)
+            productos[indice]['cantidad'] = cantidad
 
         print("Producto actualizado con éxito.")
     else:
         print("Índice no válido.")
+
 
 
 def eliminar_producto():
