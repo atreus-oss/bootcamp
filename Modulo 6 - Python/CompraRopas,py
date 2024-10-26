@@ -2,9 +2,10 @@ from abc import ABC, abstractmethod
 
 # Clase abstracta para productos
 class Producto(ABC):
-    def __init__(self, nombre, precio):
+    def __init__(self, nombre, precio, cantidad):
         self._nombre = nombre
         self._precio = precio
+        self._cantidad = cantidad
 
     @abstractmethod
     def mostrar_info(self):
@@ -13,32 +14,41 @@ class Producto(ABC):
     def get_precio(self):
         return self._precio
 
+    def get_cantidad(self):
+        return self._cantidad
+
+    def reducir_cantidad(self):
+        if self._cantidad > 0:
+            self._cantidad -= 1
+        else:
+            print(f"No hay más stock de {self._nombre}.")
+
 # Clase para camisas
 class Camisa(Producto):
-    def __init__(self, nombre, precio, talla):
-        super().__init__(nombre, precio)
+    def __init__(self, nombre, precio, cantidad, talla):
+        super().__init__(nombre, precio, cantidad)
         self._talla = talla
 
     def mostrar_info(self):
-        return f"Camisa: {self._nombre}, Precio: {self._precio}, Talla: {self._talla}"
+        return f"Camisa: {self._nombre}, Precio: ${self._precio:.2f}, Talla: {self._talla}, Cantidad: {self._cantidad}"
 
 # Clase para pantalones
 class Pantalon(Producto):
-    def __init__(self, nombre, precio, talla):
-        super().__init__(nombre, precio)
+    def __init__(self, nombre, precio, cantidad, talla):
+        super().__init__(nombre, precio, cantidad)
         self._talla = talla
 
     def mostrar_info(self):
-        return f"Pantalón: {self._nombre}, Precio: {self._precio}, Talla: {self._talla}"
+        return f"Pantalón: {self._nombre}, Precio: ${self._precio:.2f}, Talla: {self._talla}, Cantidad: {self._cantidad}"
 
 # Clase para zapatos
 class Zapato(Producto):
-    def __init__(self, nombre, precio, talla):
-        super().__init__(nombre, precio)
+    def __init__(self, nombre, precio, cantidad, talla):
+        super().__init__(nombre, precio, cantidad)
         self._talla = talla
 
     def mostrar_info(self):
-        return f"Zapato: {self._nombre}, Precio: {self._precio}, Talla: {self._talla}"
+        return f"Zapato: {self._nombre}, Precio: ${self._precio:.2f}, Talla: {self._talla}, Cantidad: {self._cantidad}"
 
 # Clase para la categoría de productos
 class Categoria:
@@ -50,7 +60,7 @@ class Categoria:
         self.productos.append(producto)
 
     def mostrar_productos(self):
-        print(f"Categoría: {self.nombre}")
+        print(f"\nCategoría: {self.nombre}")
         for producto in self.productos:
             print(producto.mostrar_info())
 
@@ -70,15 +80,19 @@ class Tienda:
         for categoria in self.categorias:
             for producto in categoria.productos:
                 if producto._nombre == nombre_producto:
-                    print(f"Compra procesada: {producto.mostrar_info()}")
+                    if producto.get_cantidad() > 0:
+                        producto.reducir_cantidad()
+                        print(f"\nCompra procesada: {producto.mostrar_info()}")
+                    else:
+                        print(f"No hay stock disponible para {nombre_producto}.")
                     return
         print("Producto no encontrado.")
 
 if __name__ == "__main__":
     # Crear productos
-    camisa1 = Camisa("Camisa de rayas", 25.99, "M")
-    pantalon1 = Pantalon("Pantalón de mezclilla", 40.50, "L")
-    zapato1 = Zapato("Zapato deportivo", 60.00, "42")
+    camisa1 = Camisa("Camisa de rayas", 25.99, 10, "M")
+    pantalon1 = Pantalon("Pantalón de mezclilla", 40.50, 5, "L")
+    zapato1 = Zapato("Zapato deportivo", 60.00, 8, "42")
 
     # Crear categorías
     categoria_ropa = Categoria("Ropa")
@@ -99,3 +113,5 @@ if __name__ == "__main__":
 
     # Procesar una compra
     tienda.procesar_compra("Camisa de rayas")
+    tienda.procesar_compra("Zapato deportivo")
+    tienda.procesar_compra("Pantalón de mezclilla")
